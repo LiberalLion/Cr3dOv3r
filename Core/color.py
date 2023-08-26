@@ -27,7 +27,7 @@ def set_colors():
 set_colors()
 
 def status(text):
-	print( C+"[+] "+G+text+end )
+	print(f"{C}[+] {G}{text}{end}")
 
 def error(text):
-	print( M+"[!] "+R+text+end )
+	print(f"{M}[!] {R}{text}{end}")

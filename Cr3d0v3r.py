@@ -22,9 +22,7 @@ email   = args.email
 
 def is_there_captcha(page_source):
 	# Got these words from the recaptcha api docs Muhahahaha
-	if any( w in page_source.lower() for w in ["recaptcha/api","grecaptcha"]):
-		return True
-	return False
+	return any(( w in page_source.lower() for w in ["recaptcha/api","grecaptcha"]))
 
 #with mechanicalsoup
 def login( name ,dic ,email ,pwd ):
@@ -126,15 +124,11 @@ def main():
 		status("Checking email in public leaks...")
 		ispwned.parse_data(email,args.np)
 
-	print(C+" │"+end)
-	line =C+" └──=>Enter a password"+W+"─=> "
-	if os.name=="nt":
-		pwd   = getinput(line) #Escaping the echo warning, sorry guyss (¯\_(ツ)_/¯)
-	else:
-		pwd   = getpass(line)
-
+	print(f"{C} │{end}")
+	line = f"{C} └──=>Enter a password{W}─=> "
+	pwd = getinput(line) if os.name=="nt" else getpass(line)
 	print("")
-	status("Testing email against {} website".format( Y+str(len(all_websites))+G ))
+	status(f"Testing email against {Y + str(len(all_websites)) + G} website")
 	for wd in list(websites.keys()):
 		dic = websites[wd]
 		login( wd ,dic ,email ,pwd )
